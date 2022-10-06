@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cssreset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>EM COÁ YÊU ANH KHUM</title>
+
+</head>
+
+<body>
+
+
+    <h1 align="center" class="theh1">EM COÁ YÊU ANH KHUM? HIHI</h1>
+
+<div class="input-checkbox" id="input-checkbox">
+    <div class="hihi">
+        <input id="dongy" type="checkbox" class="my-checkbox-x2" onclick="checkbox()"><label for="boxid" class="yes"> Đồng Ý</label>
+    </div>
+    <div class="hihi">
+        <input id="boxid" type="checkbox" class="my-checkbox-x2" onclick="checkbox()"> <label for="boxid" class="no">Không Đồng Ý</label>
+    </div>
+    <div class="hihi" id="dongy3">
+        <input id="inputdongy" type="checkbox" class="my-checkbox-x2"  onclick="showmodal()"> <label for="boxid" class="no">Đồng Ý Cả 3 luôn</label>
+    </div>
+
+
+</div>
+
+
+<div class="button-choose">
+    <button id="yes" type="button" class="btn btn-danger btn-lg">Oki nè EM đồng ý &lt;333 </button>
+    <button id="no" type="button" class="btn btn-info btn-lg">No. Anh mơ à :333 </button>
+</div>
+
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2 align="center">Hi EM YÊU</h2>
+      </div>
+      <div class="modal-body">
+        <p>NẾU CÂU TRẢ LỜI TRÊN LÀ BẮT BUỘC!!</p>
+        <br>
+        <p>EM HÃY NHẤN NÚT VÀ CHỌN TRẢ LỜI LẠI NHÉ EM IU!!</p>
+      </div>
+      <div class="modal-footer">
+        <h3 align="center">!!!!!!!!!HIHI!!!!!!!!!!</h3>
+      </div>
+    </div>
+  
+  </div>
+
+
+<script>
+
+
+function switchButton() {
+   
+    var leftNo = $('#no').css("left");
+    var topNO = $('#no').css("top");
+    var leftY = $('#yes').css("left");
+    var topY = $('#yes').css("top");
+    $('#no').css("left", leftY);
+    $('#no').css("top", topY);
+    $('#yes').css("left", leftNo);
+    $('#yes').css("top", topNO);
+}
+
+
+function moveButton() {
+
+    if (screen.width<=500) {
+        var x = Math.random() * 200;
+        var y = Math.random() * 500;
+    } else{
+        var x = Math.random() * 200;
+        var y = Math.random() * 500;
+    }
+    var left = x + 'px';
+    var top = y + 'px';
+    $('#no').css("left", left);
+    $('#no').css("top", top);
+
+}
+var n = 0;
+$('#no').mousemove(function() {
+    if (n < 1)
+        switchButton();
+    if (n > 1)
+        moveButton();
+    n++;
+});
+$('#no').click(() => {
+    if (screen.width>=900)
+        switchButton();
+})
+
+
+
+
+    let inputcheckbox = document.getElementById("input-checkbox");
+    $('#boxid').click(function () {
+        if ($(this).is(':checked')) {
+            $(this).siblings('.no').html('Hi!Dạ Đồng Ý');
+        } else {
+            $(this).siblings('.no').html('Không Đồng Ý');
+        }
+    });
+    function checkbox() {
+        let dongy = document.getElementById("dongy");
+        let boxid = document.getElementById("boxid");
+        let dongy3 = document.getElementById("dongy3");
+        if (dongy.checked == true && boxid.checked == true) {
+            dongy3.style.display = "block";
+        }
+    }
+
+    function showmodal() {
+        
+        let inputdongy = document.getElementById("inputdongy");
+        if (inputdongy.checked == true) {
+            modal.style.display = "block";
+        }
+    }
+    
+
+
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+
+    // btn.onclick = function () {
+    //     modal.style.display = "block";
+    // }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+        setTimeout(function(){  inputcheckbox.style.display = "none"},1000)
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            setTimeout(function(){  inputcheckbox.style.display = "none"},1000)
+           
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+    
+</body>
+
+
+</html>
+
